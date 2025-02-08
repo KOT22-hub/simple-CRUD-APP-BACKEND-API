@@ -51,13 +51,13 @@ app.delete("/api/products/:id", async (req, res) => {
     res.status(500).json({ messsage: error.message });
   }
 });
+
+const url = process.env.URL;
 mongoose
-  .connect(
-    "mongodb+srv://Kuts:0kVqVGBSq2IGGdgw@cluster0.mzkve.mongodb.net/Project0?retryWrites=true&w=majority"
-  )
+  .connect(url)
   .then(() => {
     console.log("Connected to database");
-    app.listen(3000, () => {
+    app.listen(process.env.PORT, () => {
       console.log("Server is listening on port 3000");
     });
   })
